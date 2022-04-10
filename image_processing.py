@@ -1,8 +1,11 @@
+import matplotlib
 from PIL import Image # noqa
-from matplotlib import pyplot # noqa
 from alive_progress import alive_bar # noqa
 import numpy as np # noqa
+from matplotlib import pyplot
 import os
+
+matplotlib.use('agg')
 
 
 def load_image(filename):
