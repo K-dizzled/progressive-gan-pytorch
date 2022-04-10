@@ -183,7 +183,7 @@ class ProGAN(object):
                     real_images = np.transpose(real_images, [0, 3, 1, 2])
 
                     # Convert to pytorch tensors
-                    real_images = torch.from_numpy(real_images)
+                    real_images = torch.from_numpy(real_images).to(device)
 
                     # Train Discriminator
                     b_size = real_images.shape[0]
