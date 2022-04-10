@@ -224,7 +224,7 @@ class ProGAN(object):
                         create_graph=True
                     )[0]
 
-                    grad_penalty = grad_x_hat.view(grad_x_hat.size(0), -1)
+                    grad_penalty = grad_x_hat.reshape(grad_x_hat.size(0), -1)
                     grad_penalty = grad_penalty.norm(2, dim=1) - 1
                     grad_penalty = grad_penalty ** 2
                     grad_penalty = grad_penalty.mean()
