@@ -1,7 +1,6 @@
 import torch # noqa
 
-device = torch.device("cpu")
-# device = torch.device("cuda:%d"%(args.gpu_id))
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 latent_dim_size = 128
 total_steps = 6
 epochs = [25000 for _ in range(total_steps)]
