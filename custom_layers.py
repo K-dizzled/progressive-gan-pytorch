@@ -190,7 +190,7 @@ class ConvolutionLayer(nn.Module):
 
 
 def upscale(input, scale_factor=2):
-    return nn.functional.upsample(
+    return nn.functional.interpolate(
         input,
         scale_factor=scale_factor,
         mode='bilinear',
