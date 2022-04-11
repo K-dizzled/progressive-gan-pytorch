@@ -1,7 +1,7 @@
 import matplotlib
-from PIL import Image # noqa
-from alive_progress import alive_bar # noqa
-import numpy as np # noqa
+from PIL import Image  # noqa
+from alive_progress import alive_bar  # noqa
+import numpy as np  # noqa
 from matplotlib import pyplot
 import os
 
@@ -80,12 +80,17 @@ def save_samples(n_samples, images, iteration, log_folder):
         figsize=(images.shape[1], images.shape[1])
     )
 
-    axs = axs.flatten()
-    for img, ax in zip(images, axs):
-        ax.axis('off')
-        ax.imshow((img * 255).astype(np.uint8))
+    try:
+        axs = axs.flatten()
+        for img, ax in zip(images, axs):
+            ax.axis('off')
+            img = np.clip(img, 0, 1)
+            ax.imshow(img)
 
-    # save plot to file
-    filename = '%s/generated_img_iter_%s03d.png' % (log_folder, str(iteration + 1))
-    pyplot.savefig(filename)
-    pyplot.close()
+        # save plot to file
+        filename = '%s/generated_img_iter_%s03d.png' % (log_folder, str(iteration + 1))
+        pyplot.savefig(filename)
+        pyplot.close()
+
+    except MemoryError:
+        print('Error saving image. Memory error occurred.')
